@@ -10,7 +10,7 @@ class standardPage{
 
         searchButton : () => cy.get('#searchButton'),
     
-        userSignoutButton : () => cy.get('#global-navigation__signout-button')
+        userSignoutButton : () => cy.get('#pt-logout')
     }
 
     clickLogIn(){
