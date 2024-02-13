@@ -1,3 +1,5 @@
+
+
 class standardPage{
 
     elements ={
@@ -14,19 +16,12 @@ class standardPage{
     }
 
     clickLogIn(){
-
         this.elements.logInButton().click();
-
     }
 
     signOut(){
-
         this.elements.userSignoutButton().click();
-
     }
-
-
-
 }
 
 

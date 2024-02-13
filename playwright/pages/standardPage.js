@@ -4,7 +4,6 @@ exports.standardPage = class standardPage {
 
     constructor(page){
         this.page = page
-
         this.logInButton = page.locator('#pt-login')
         this.registerButton = page.locator('#pt-createaccount')
         this.searchInput = page.locator('#searchInput')

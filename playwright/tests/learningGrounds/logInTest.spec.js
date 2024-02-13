@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test')
 const { logInPage } = require('../../pages/logInPage')
 const { standardPage } = require('../../pages/standardPage')
-const creds = require('../../testdata/logInCreds1.json')
+const creds = require('../../testdata/logInCreds.json')
 
 test('log in to site', async ({ page }) => {
     const playwrightLogin = new logInPage(page)
