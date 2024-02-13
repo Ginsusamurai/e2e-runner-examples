@@ -2,38 +2,23 @@
 // const {By} = require('selenium-webdriver')
 // var driver = new webdriver.Builder().forBrowser('chrome').build()
 // driver.manage().setTimeouts({implicit: (10000)})
+const assert = require('assert')
+
 const {Key} = require('selenium-webdriver')
 var BasePage = require('./basePage.js')
+const {By} = require('selenium-webdriver');
 
 
 class StandardPage extends BasePage{
     
-    get LogInBtn() { return driver.findElement(By.id('#pt-login')) }
-    get registerButton() { return driver.findElement(By.id('#pt-createaccount')) }
-    get searchButton() { return driver.findElement(By.id('#searchButton')) }
-    get userSignoutButton() { return driver.findElement(By.id('#pt-logout')) }
-    
-    // constructor(){
-    //     super()
-    //     // global.driver = driver
-    //     // this.logInButton = page.locator('#pt-login')
-    //     this.logInButton = driver.findElement(By.id('#pt-login'))
-
-    //     // this.registerButton = page.locator('#pt-createaccount')
-    //     this.registerButton = driver.findElement(By.id('#pt-createaccount'))
-
-    //     // this.searchInput = page.locator('#searchInput')
-    //     this.searchInput = driver.findElement(By.id('#searchInput'))
-
-    //     // this.searchButton = page.locator('#searchButton')
-    //     this.searchButton = driver.findElement(By.id('#searchButton'))
-
-    //     // this.userSignoutButton = page.locator('#pt-logout')
-    //     this.userSignoutButton = driver.findElement(By.id('#pt-logout'))
-    // }
+    get LogInButton() { return driver.findElement(By.id('pt-login')) }
+    get registerButton() { return driver.findElement(By.id('pt-createaccount')) }
+    get searchButton() { return driver.findElement(By.id('searchButton')) }
+    get userSignoutButton() { return driver.findElement(By.id('pt-logout')) }
+    get userSignoutList() { return driver.findElements(By.css('#pt-logout')) }
 
     async clickLogIn(){
-        await this.logInButton.click()
+        await this.LogInButton.click()
     }
 
     async signOut(){
@@ -42,6 +27,11 @@ class StandardPage extends BasePage{
 
     async enter_url(theURL){
         await this.go_to_url(theURL);
+    }
+
+    async confirm_logged_in(){
+        let btn = await this.userSignoutList
+        await assert(btn.length > 0, 'Not logged in')
     }
 
 }

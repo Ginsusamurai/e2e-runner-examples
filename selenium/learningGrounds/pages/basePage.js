@@ -8,6 +8,11 @@ class BasePage{
     constructor(){
         global.driver = driver;
     }
+
+    async findElementByText(text){
+        return await driver.findElements(By.xpath(`//*[text()='${text}']`))
+    }
+
     async go_to_url(theURL){
         await driver.get(theURL);
     }

@@ -1,11 +1,10 @@
 const assert = require('assert')
 const standardPage = require('../pages/standardPage.js')
 const loginPage = require('../pages/loginPage.js')
+const creds = require('../../testdata/creds.json')
+const {By} = require('selenium-webdriver');
 
-const creds = {
-    'userName':,
-    'password':
-}
+
 // driver = await new Builder().forBrowser('chrome').build();
 
 describe('login test', function (){
@@ -15,10 +14,12 @@ describe('login test', function (){
         var baseUrl = 'https://zeldawiki.wiki'
         await standardPage.enter_url(baseUrl)
         let title = await driver.getTitle()
-        assert.equal(title, 'Zelda Wiki')
+        await assert.equal(title, 'Zelda Wiki')
         await standardPage.clickLogIn()
-
-        standardPage.closeBrowser()
+        await loginPage.login(creds)
+        await standardPage.findElementByText('Log out')
+        await standardPage.confirm_logged_in()
+        await standardPage.closeBrowser()
     })
 
 })
